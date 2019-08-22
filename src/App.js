@@ -13,15 +13,7 @@ class App extends Component {
         showPersons: false
     };
 
-    switchNameHandler = (newName) => {
-        this.setState({
-            persons: [
-                {name: newName, age: 29},
-                {name: 'Manu', age: 12},
-                {name: 'Stephanie', age: 29},
-            ]
-        });
-    };
+
 
     nameChangedHandler = (event) => {
         this.setState({
@@ -32,6 +24,13 @@ class App extends Component {
             ]
         });
     };
+
+    deletePersonHandler = (personIndex) => {
+        const persons = this.state.persons;
+        persons.splice(personIndex, 1);
+        this.setState({persons : persons});
+    };
+
     togglePersonsHandler = () => {
         const doesShow = this.state.showPersons
         this.setState({
@@ -51,23 +50,15 @@ class App extends Component {
         if (this.state.showPersons) {
             persons = (
                 <div>
-                    <Person
-                        name={this.state.persons[0].name}
-                        age={this.state.persons[0].age}
-                        click={this.switchNameHandler.bind(this, 'Max!')}
-                    />
-                    <Person
-                        name={this.state.persons[1].name}
-                        age={this.state.persons[1].age}
-                        click={this.switchNameHandler.bind(this, 'Max!')}
-                        changed={this.nameChangedHandler}
+                    {this.state.persons.map((person, index) => {
+                        return <Person
+                            click={() => this.deletePersonHandler(index)}
+                            /* or bind this comma index*/
+                            name={person.name}
+                            age={person.age}
 
-                    />
-                    <Person
-                        name={this.state.persons[2].name}
-                        age={this.state.persons[2].age}
-                        click={this.switchNameHandler.bind(this, 'Max!')}
-                    />
+                        />
+                    })}
                 </div>
             );
         }
