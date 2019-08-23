@@ -5,9 +5,9 @@ import Person from './Person/Person';
 class App extends Component {
     state = {
         persons: [
-            {name: 'Max', age: 29},
-            {name: 'Stephanie', age: 29},
-            {name: 'Manu', age: 29},
+            {id: 'qwde', name: 'Max', age: 29},
+            {id: 'qwdee', name: 'Stephanie', age: 29},
+            {id: 'qwdeee',name: 'Manu', age: 29},
         ],
         otherState: 'some value',
         showPersons: false
@@ -15,18 +15,26 @@ class App extends Component {
 
 
 
-    nameChangedHandler = (event) => {
-        this.setState({
-            persons: [
-                {name: 'Max', age: 29},
-                {name: event.target.value, age: 12},
-                {name: 'Stephanie', age: 29},
-            ]
+    nameChangedHandler = (event, id) => {
+        const personIndex = this.state.persons.findIndex(pers => {
+            return pers.id ===id;
+        });
+        const person = {
+            ...this.state.persons[personIndex]
+        };
+
+        const persons = [...this.state.persons];
+        persons[personIndex] = person;
+
+        person.name = event.target.value;
+        this.setState( {
+            persons:persons
         });
     };
 
     deletePersonHandler = (personIndex) => {
-        const persons = this.state.persons;
+        // const persons = this.state.persons.slice();
+        const persons = [...this.state.persons];
         persons.splice(personIndex, 1);
         this.setState({persons : persons});
     };
@@ -52,11 +60,13 @@ class App extends Component {
                 <div>
                     {this.state.persons.map((person, index) => {
                         return <Person
+
                             click={() => this.deletePersonHandler(index)}
                             /* or bind this comma index*/
                             name={person.name}
                             age={person.age}
-
+                            changed={(event) => this.nameChangedHandler(event, person.id)}
+                            key={person.id}
                         />
                     })}
                 </div>
