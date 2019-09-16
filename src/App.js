@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styles from './App.module.css';
 import Person from './Person/Person';
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 class App extends Component {
     state = {
@@ -53,15 +54,15 @@ class App extends Component {
             persons = (
                 <div>
                     {this.state.persons.map((person, index) => {
-                        return <Person
-
+                        return <ErrorBoundary key={person.id}>
+                            <Person
                             click={() => this.deletePersonHandler(index)}
                             /* or bind this comma index*/
                             name={person.name}
                             age={person.age}
                             changed={(event) => this.nameChangedHandler(event, person.id)}
-                            key={person.id}
                         />
+                        </ErrorBoundary>
                     })}
                 </div>
             );
@@ -70,10 +71,10 @@ class App extends Component {
 
         const assignedClasses = [];
         if (this.state.persons.length <= 2) {
-            assignedClasses.push(styles.red); //classes = ['red];
+            assignedClasses.push(styles.red);
         }
         if (this.state.persons.length <=1) {
-            assignedClasses.push(styles.bold); //classes = ['red', 'bold']
+            assignedClasses.push(styles.bold);
         }
         return (
             <div className={styles.App}>
