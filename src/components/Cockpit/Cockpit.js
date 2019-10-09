@@ -4,7 +4,7 @@ import styles from "./Cockpit.module.css";
 const Cockpit = (props) => {
     const assignedClasses = [];
     let btnClass='';
-    if (props.showPersons) {
+    if (props.show) {
         btnClass = styles.Red;
     }
     if (props.persons.length <= 2) {
@@ -15,7 +15,8 @@ const Cockpit = (props) => {
     }
     return (
         <div className={styles.Cockpit}>
-            <h1>Hello, world!</h1>
+            <h1>{props.title}</h1>
+            
             <p className={assignedClasses.join(' ')}>This is really working!</p>
             <button onClick={props.toggle} className={btnClass}>Toggle Persons
             </button>
