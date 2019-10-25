@@ -4,7 +4,13 @@ import styles from "./Cockpit.module.css";
 const Cockpit = (props) => {
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
-    });
+        //http request
+        setTimeout( () => {
+            alert('saved data to cloud!');
+        },1000);
+    }, [props.persons]);
+    //should execute when our persons changes and when initialized, or run initially when array is empty
+
 
     const assignedClasses = [];
     let btnClass='';
