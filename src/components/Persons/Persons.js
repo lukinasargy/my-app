@@ -20,6 +20,10 @@ class Persons extends Component {
         console.log('[Persons.js] Component did update');
         console.log(snapshot);
     }
+    componentWillUnmount() {
+        console.log('[Persons.js] componentWillUnmount');
+        //executes before persons component is deleted from DOM, does cleanup work
+    }
 
     render () {
         console.log('[Persons.js] rendering..');

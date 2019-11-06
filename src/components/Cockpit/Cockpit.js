@@ -8,10 +8,19 @@ const Cockpit = (props) => {
         setTimeout( () => {
             alert('saved data to cloud!');
         },1000);
-    }, [props.persons]);
-    //should execute when our persons changes and when initialized, or run initially when array is empty
-
-
+        return () => {
+            console.log('[Cockpit.js] cleanup work in useEffect');
+            //should run when cockpit.js is removed
+        };
+    }, []);
+    //should execute when our persons changes and when initialized, or run initially, or unMounted when array is empty
+    useEffect (() => {
+        console.log('[Cockpit.js] 2nd useEffect');
+        return () => {
+            console.log('[Cockpit.js] cleanup work in useEffect 2nd');
+        };
+    });
+    //executes every update with no argument
     const assignedClasses = [];
     let btnClass='';
     if (props.show) {
