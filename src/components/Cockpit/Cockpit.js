@@ -4,11 +4,13 @@ import styles from "./Cockpit.module.css";
 const Cockpit = (props) => {
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
-        //http request
-        setTimeout( () => {
+        //http request imitation
+        const timer = setTimeout( () => {
             alert('saved data to cloud!');
         },1000);
         return () => {
+            clearTimeout(timer);
+            // now if we remove cockpit before timeout we never see the alert
             console.log('[Cockpit.js] cleanup work in useEffect');
             //should run when cockpit.js is removed
         };
