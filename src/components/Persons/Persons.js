@@ -1,31 +1,39 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 import Person from "./Person/Person";
 
-class Persons extends Component {
+class Persons extends PureComponent{
     // static getDerivedStateFromProps (props, state) {
     //     console.log("[Persons.js] getDerivedStateFromProps");
     //     return state;
     // }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log("[Persons.js] shouldComponentUpdate");
-        return (nextProps.persons !== this.props.persons );
-    }
+
+    // shouldComponentUpdate(nextProps, nextState, nextContext) {
+    //     console.log("[Persons.js] shouldComponentUpdate");
+    //     return (
+    //         nextProps.persons !== this.props.persons ||
+    //         nextProps.changed !== this.props.changed ||
+    //         nextProps.clicked !== this.props.clicked
+    //     );
+    // }
+
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('[Persons.js] getSnapshotBeforeUpdate');
         return {message: 'Snapshot!'};
     }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('[Persons.js] Component did update');
         console.log(snapshot);
     }
+
     componentWillUnmount() {
         console.log('[Persons.js] componentWillUnmount');
         //executes before persons component is deleted from DOM, does cleanup work
     }
 
-    render () {
+    render() {
         console.log('[Persons.js] rendering..');
         return this.props.persons.map((person, index) => {
             return <Person
@@ -45,4 +53,4 @@ class Persons extends Component {
 };
 
 
-export default Persons ;
+export default Persons;
