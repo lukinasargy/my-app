@@ -26,16 +26,15 @@ const Cockpit = (props) => {
     if (props.show) {
         btnClass = styles.Red;
     }
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {
         assignedClasses.push(styles.red);
     }
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
         assignedClasses.push(styles.bold);
     }
     return (
         <div className={styles.Cockpit}>
             <h1>{props.title}</h1>
-            
             <p className={assignedClasses.join(' ')}>This is really working!</p>
             <button onClick={props.toggle} className={btnClass}>Toggle Persons
             </button>
@@ -43,4 +42,5 @@ const Cockpit = (props) => {
     );
 };
 
-export default Cockpit;
+export default React.memo(Cockpit);
+//wrapping functional component instead of shouldComponentUpdate for class based component also we have to get rid of state dependencies. Memo rerender if only inputs change
