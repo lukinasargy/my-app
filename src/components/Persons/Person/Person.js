@@ -7,13 +7,30 @@ import classes from './Person.module.css';
 
 
 class Person extends Component {
+    constructor (props) {
+        super(props);
+        this.inputElementRef = React.createRef();
+        //since react 16.3
+};
+    componentDidMount() {
+        // this.inputElem.focus();
+    this.inputElementRef.current.focus();
+
+}
     render() {
         console.log('[Person.js] rendering...');
         return (
             <Aux>
                 <p onClick={this.props.click}>I'm {this.props.name} and I'm {this.props.age} years old!</p>
                 <div key="i2">{this.props.children}</div>
-                <input key="i3" type="text" onChange={this.props.changed} value={this.props.name}/>
+                <input
+                    key="i3"
+                    type="text"
+                    onChange={this.props.changed}
+                    value={this.props.name}
+                    // ref={(inputEl) => {this.inputElem = inputEl}}
+                    ref={this.inputElementRef}
+                />
             </Aux>
         )
     };
