@@ -1,18 +1,15 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useContext} from 'react';
 import styles from "./Cockpit.module.css";
 import AuthContext from "../../context/auth-context";
 
 const Cockpit = (props) => {
 
     const toggleBtnRef = useRef(null);
+    const authContext = useContext(AuthContext);
+    console.log('Cockpit.js' + authContext.authenticated);
 
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
-        //http request imitation
-        // setTimeout( () => {
-        //     alert('saved data to cloud!');
-        // },1000);
-
         toggleBtnRef.current.click();
 
         return () => {
@@ -21,6 +18,7 @@ const Cockpit = (props) => {
         };
     }, []);
     //should execute when our persons changes and when initialized, or run initially, or unMounted when array is empty
+
     useEffect (() => {
         console.log('[Cockpit.js] 2nd useEffect');
         return () => {
@@ -28,6 +26,7 @@ const Cockpit = (props) => {
         };
     });
     //executes every update with no argument
+
     const assignedClasses = [];
     let btnClass='';
     if (props.show) {
@@ -47,9 +46,7 @@ const Cockpit = (props) => {
             </button>
             <br/>
             <br/>
-            <AuthContext.Consumer>
-                {(context) => <button onClick={context.login}>Log in</button>}
-            </AuthContext.Consumer>
+                <button onClick={authContext.login}>Log in</button>
         </div>
     );
 };
