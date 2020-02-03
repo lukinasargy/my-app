@@ -7,18 +7,18 @@
 }
 
 .Cockpit button {
-    border: 1px solid dodgerblue;
-    padding: 16px;
-    background-color: green;
-    font: inherit;
-    color: #fff;
-    transition: 0.3s all;
-    cursor: pointer;
+    /*border: 1px solid dodgerblue;*/
+    /*padding: 16px;*/
+    /*background-color: green;*/
+    /*font: inherit;*/
+    /*color: #fff;*/
+    /*transition: 0.3s all;*/
+    /*cursor: pointer;*/
 }
 
 .Cockpit button:hover {
-    background-color: lightgreen;
-    color: #000;
+    /*background-color: lightgreen;*/
+    /*color: #000;*/
 }
 
 .Cockpit button.Red {

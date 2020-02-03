@@ -5,26 +5,43 @@ import Aux from '../../../hoc/Auxiliary';
 import withClass from "../../../hoc/withClass";
 import classes from './Person.module.css';
 import AuthContext from "../../../context/auth-context";
+// import styled from 'styled-components';
 
-
+// const StyledDiv = styled.div`
+//     width: 50%;
+//     margin: 20px auto;
+//     border: 1px solid #eee;
+//     box-shadow: 0 0 5px #ccc;
+//     padding: 15px;
+//     text-align: center;
+//     font-family: 'Roboto', sans-serif;
+//     font-weight: 500;
+//
+// @media (min-width: 500px) {
+//         width: 450px;
+// }`;
 class Person extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.inputElementRef = React.createRef();
         //since react 16.3
-};
+    };
+
     static contextType = AuthContext;
+
     componentDidMount() {
         // this.inputElem.focus();
-    this.inputElementRef.current.focus();
-    console.log(this.context.authenticated);
-    // React gives you access to context only in class-based components if you declare static property for contextType
+        this.inputElementRef.current.focus();
+        console.log(this.context.authenticated);
+        // React gives you access to context only in class-based components if you declare static property for contextType
 
-}
+    }
+
     render() {
         console.log('[Person.js] rendering...');
+
         return (
-            <Aux>
+            <Aux className={Person}>
                 {this.context.authenticated ? <p>Authenticated!</p> : <p>Please log in</p>}
 
                 <p onClick={this.props.click}>I'm {this.props.name} and I'm {this.props.age} years old!</p>
@@ -41,6 +58,7 @@ class Person extends Component {
         )
     };
 }
+
 Person.propTypes = {
     click: PropTypes.func,
     name: PropTypes.string,

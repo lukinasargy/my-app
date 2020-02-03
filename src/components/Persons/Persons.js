@@ -3,6 +3,7 @@ import React, {PureComponent} from 'react';
 import Person from "./Person/Person";
 
 class Persons extends PureComponent{
+    // component that checks if there any props changes and update the component if there are
     // static getDerivedStateFromProps (props, state) {
     //     console.log("[Persons.js] getDerivedStateFromProps");
     //     return state;
